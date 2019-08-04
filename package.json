@@ -1,0 +1,22 @@
+{
+  "name": "projectparadise",
+  "version": "1.0.0",
+  "description": "A presentational website with whitelist requests system and simple admin panel for managing it.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Aktyn/ProjectParadise.git"
+  },
+  "author": "Aktyn",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/Aktyn/ProjectParadise/issues"
+  },
+  "homepage": "https://github.com/Aktyn/ProjectParadise#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
