@@ -1,2 +1,5 @@
-# ProjectParadise
-A presentational website with whitelist requests system and simple admin panel for managing it.
+<h2>Project Paradise</h2>
+<h3>Work suspended</h3>
+<p>A presentational website with fancy parallax effects.</p>
+
+<img src="./preview.png" alt="preview" />
