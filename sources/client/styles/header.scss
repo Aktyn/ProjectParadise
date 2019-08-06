@@ -1,0 +1,74 @@
+@font-face {
+    font-family: Paradise;
+	font-display: auto;
+    src: url('./Paradise.ttf');
+}
+
+.header {
+	height: 100%;
+	
+	h1 {
+		font-weight: normal;
+		
+		font-size: 150px;
+		margin: 0px;
+		padding: 0px;
+		
+		display: block;
+		height: 100%;
+		
+		//position: relative;
+		
+		& > * {//word containers
+			display: inline-block;
+			
+			& > * {
+				font-family: Paradise, RobotoRegular, Arial, serif;
+				background: linear-gradient(#ec407a80 0%, #ffccbca0 100%);
+				-webkit-background-clip: text;
+				background-clip: text;
+				color: transparent;
+				-webkit-text-fill-color: transparent;
+				padding: 20px 40px;
+				position: relative;
+				text-shadow: none;
+				//text-shadow: 0px 0px 5px yellow;
+				&::after {
+					padding: 20px 40px;
+					background: none;
+					content: attr(data-text);
+					left: 0;
+					position: absolute;
+					text-shadow: 0px -4px 0px #fff8;
+					top: 0;
+					z-index: -1;
+				}
+			}
+			
+			@media (min-width: 900px) {
+				height: 100%;
+				padding-top: 80px;
+				transform-origin: bottom;
+				
+				$rot: 15deg;
+				
+				&:first-child {
+					transform: rotate(-$rot);
+				}
+				
+				&:not(:first-child) {
+					transform: rotate($rot);
+				}
+			}
+			
+			@media (max-width: 901px) {
+				//margin: 0px 20px;
+			}
+		}
+		
+		@media (max-width: 500px) {
+			font-size: 100px;
+		}
+	}
+	
+}

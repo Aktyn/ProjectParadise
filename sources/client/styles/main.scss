@@ -4,6 +4,13 @@
 //cubic-bezier(.36,.07,.19,.97)
 //cubic-bezier(.87,-.41,.19,1.44)
 
+
+@font-face {
+    font-family: RobotoRegular;
+	font-display: swap;
+    src: url('./Roboto-Regular.ttf');
+}
+
 * {
     font-family: RobotoRegular, Arial, serif;
     -webkit-font-smoothing: antialiased;

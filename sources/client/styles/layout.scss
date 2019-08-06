@@ -1,6 +1,10 @@
+@import "animations";
+
 $headerSize: 400px;
 $sunSize: 200px;
 $waveHeight: 30px;
+
+$fadeFunc: 1.5s cubic-bezier(.36,.07,.19,.97) forwards;
 
 .layout {
 	display: grid;
@@ -12,6 +16,18 @@ $waveHeight: 30px;
     overflow-x: hidden;
     perspective: 8px;
     perspective-origin: top;
+	
+	& > .night-fader {
+		position: fixed;
+		top: 0px;
+		left: 0px;
+		width: 100vw;
+		height: 100vh;
+		background-color: #311B92;
+		z-index: 99;
+		
+		animation: fade-out $fadeFunc;
+	}
 	
 	& > header {
 		grid-area: header;
@@ -44,10 +60,20 @@ $waveHeight: 30px;
 		& > .gradient-fixed {//3rd: FF8A65
 			background: linear-gradient(#5E00D1E0 0%, #EC407AE0 #{$headerSize*0.6}, #FF8A65 $headerSize) fixed;
 		}
+	}
+	
+	& > .header-content {
+		z-index: 1;
+		position: absolute;
+		top: 0px;
+		left: 0px;
+		width: 100vw;
+		height: $headerSize;
 		
-		& > .content {
-			z-index: 5;
-		}
+		//pointer-events: none;
+		
+		transform: translateZ(-6px) scale(1.75);
+		transform-origin: top;
 	}
 	
 	& > .sun-holder {
@@ -57,6 +83,9 @@ $waveHeight: 30px;
 		width: 100vw;
 		height: $headerSize;
 		transform-style: preserve-3d;
+		
+		transform: translateY(100%);
+		animation: slide-from-bottom $fadeFunc;
 		
 		& > .sun-parallax {
 			display: block;
@@ -99,19 +128,39 @@ $waveHeight: 30px;
 				border-radius: $sunSize;
 				box-shadow: 0px 0px 40px 1px #FFCCBC;
 				z-index: 2;
+				
+				/*cursor: pointer;
+				transition: transform 0.3s cubic-bezier(.36,.07,.19,.97);
+				&:hover {
+					transform: scale(1.05);
+				}*/
 			}
+		}
+		
+		& > .sun-shine-bottom {
+			display: block;
+			position: absolute;
+			z-index: 1;
+			left: 0px;
+			right: 0px;
+			//top: 15px;
+			bottom: -8px;
+			margin: auto;
+			width: $sunSize * 1.2;
+			height: 0px;
+			border-radius: 100%;
+			background-color: #FFF0;
+			box-shadow: 0px 0px 10px 8px #FFF2;
 		}
 	}
 	
 	& > .wave-container {
 		width: 100vw;
 		height: $sunSize;
-		//background-color: #f008;
+		
 		overflow: hidden;
 		position: absolute;
 		top: $headerSize;
-		
-		//transform-style: preserve-3d;
 		
 		& > .wave {
 			display: block;
@@ -123,6 +172,7 @@ $waveHeight: 30px;
 			position: absolute;
 			left: 0px;
 			top: 0px;
+			z-index: 5;
 			width: 200vw;
 			
 			animation: wave-movement 14s ease-in-out infinite alternate-reverse;
@@ -151,12 +201,7 @@ $waveHeight: 30px;
 			top: -$sunSize/2;
 			
 			height: $sunSize*1.25;
-			//width: $sunSize;
-			//border-radius: $sunSize;
-			//mix-blend-mode: luminosity;
-			//background: red;
 			margin: auto;
-			//opacity: 0.6;
 			
 			transform: translateZ(2.5px) scale(0.85);
 			transform-origin: 50% -275%;
@@ -171,7 +216,8 @@ $waveHeight: 30px;
 				
 				opacity: 0;
 				
-				animation: blinking 3s linear infinite alternate-reverse;
+				transform: translateY(-100%);
+				animation: slide-from-top $fadeFunc, blinking 3s linear infinite alternate-reverse;
 				
 				@keyframes blinking {
 					0% {
@@ -196,22 +242,6 @@ $waveHeight: 30px;
 		z-index: 4;
 		
 		padding-top: $sunSize;
-		
-		/*& > .sun-shine-bottom {
-			display: block;
-			position: absolute;
-			z-index: 1;
-			left: 0px;
-			right: 0px;
-			top: 15px;
-			//bottom: 0px;
-			margin: auto;
-			width: $sunSize * 1.23;
-			height: 0px;
-			border-radius: 100%;
-			background-color: #FFF0;
-			box-shadow: 0px 0px 10px 2px #FFF;
-		}*/
 		
 		& > .page {
 			//overflow: hidden;

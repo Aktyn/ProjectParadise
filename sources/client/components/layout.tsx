@@ -1,13 +1,14 @@
 import * as React from 'react';
 
 import '../styles/layout.scss';
+import Header from "./header";
 
 const Sun = (props: {seed: number, sun_index: number, scale: number}) => {
 	const filter_name = `displacementFilter${props.sun_index}`;
 	return <svg viewBox="0 0 384 320" xmlns="http://www.w3.org/2000/svg">
 		<defs>
 			<linearGradient id="sun_grad" x1="0%" y1="0%" x2="0%" y2="100%">
-				<stop offset="0%" stopColor={'#fff'} stopOpacity={0.8}/>
+				<stop offset="0%" stopColor={'#fffa'} stopOpacity={0.8}/>
 				<stop offset="100%" stopColor={'#FFCCBC'} stopOpacity={0.2}/>
 			</linearGradient>
 			<filter id={filter_name}>
@@ -29,12 +30,11 @@ export default class Layout extends React.Component<any, any> {
 		return <main className={'layout'}>
 			<header>
 				<div className={'background-parallax'} />
-				
 				<div className={'gradient-fixed'} />
-				<div className={'content'}>
-					TODO: header content
-				</div>
 			</header>
+			<div className={'header-content'}>
+				<Header />
+			</div>
 			<div className={'sun-holder'}>
 				<div className={'sun-parallax'}>
 					<div className={'sun-halo'} style={{transform: 'scale(1.3)'}} />
@@ -42,6 +42,7 @@ export default class Layout extends React.Component<any, any> {
 					<div className={'sun-halo'} style={{transform: 'scale(1.1)'}} />
 					<div className={'sun'} />
 				</div>
+				<div className={'sun-shine-bottom'} />
 			</div>
 			<div className={'wave-container'}>
 				<div className={'wave'}/>
@@ -54,13 +55,13 @@ export default class Layout extends React.Component<any, any> {
 			<main>
 				{/*<div className={'sun-shine-bottom'} />*/}
 				<div className={'page'}>
-					
 					<div>
 						{this.props.children}
 					</div>
 				</div>
 			</main>
 			<footer>TODO: footer content</footer>
+			<div className={'night-fader'} />
 		</main>;
 	}
 }
