@@ -29,29 +29,32 @@ export default class Layout extends React.Component<any, any> {
 		return <main className={'layout'}>
 			<header>
 				<div className={'background-parallax'} />
+				
+				<div className={'gradient-fixed'} />
 				<div className={'content'}>
 					TODO: header content
 				</div>
-				<div className={'sun-holder'}>
-					<div className={'sun-parallax'}>
-						<div className={'sun-halo'} style={{transform: 'scale(1.3)'}} />
-						<div className={'sun-halo'} style={{transform: 'scale(1.2)'}} />
-						<div className={'sun-halo'} style={{transform: 'scale(1.1)'}} />
-						<div className={'sun'} />
-					</div>
-					<div className={'sun-shine-bottom'} />
-				</div>
 			</header>
+			<div className={'sun-holder'}>
+				<div className={'sun-parallax'}>
+					<div className={'sun-halo'} style={{transform: 'scale(1.3)'}} />
+					<div className={'sun-halo'} style={{transform: 'scale(1.2)'}} />
+					<div className={'sun-halo'} style={{transform: 'scale(1.1)'}} />
+					<div className={'sun'} />
+				</div>
+			</div>
+			<div className={'wave-container'}>
+				<div className={'wave'}/>
+				<div className={'wave'}/>
+				<div className={'sun-reflection'}>
+					<Sun seed={3} sun_index={1} scale={30}/>
+					<Sun seed={400} sun_index={2} scale={60}/>
+				</div>
+			</div>
 			<main>
+				{/*<div className={'sun-shine-bottom'} />*/}
 				<div className={'page'}>
-					<div className={'wave-container'}>
-						<div className={'wave'} />
-						<div className={'wave'} />
-						<div className={'sun-reflection'}>
-							<Sun seed={3} sun_index={1} scale={30} />
-							<Sun seed={400} sun_index={2} scale={60} />
-						</div>
-					</div>
+					
 					<div>
 						{this.props.children}
 					</div>

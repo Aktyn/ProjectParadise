@@ -23,115 +23,168 @@ $waveHeight: 30px;
 		grid-template-rows: auto fit-content(100%);
 		
 		position: relative;
-		//overflow: hidden;
+		transform-style: preserve-3d;
 		
-		& > .background-parallax {
+		& > .background-parallax, & > .gradient-fixed {
 			position: absolute;
 			left: 0px;
 			top: 0px;
 			width: 100vw;
 			height: $headerSize + $waveHeight;
+		}
+		
+		& > .background-parallax {
 			background: url('../img/header.webp') repeat-y center;
 			background-size: cover;
 			
 			transform: translateZ(-6px) scale(1.75);
             transform-origin: top;
-			
-			&::after {
-				content: "";
-				display: block;
-				position: absolute;
-				left: 0px;
-				top: 0px;
-				width: 100vw;
-				height: 100%;
-				background: linear-gradient(#5e00d1e0 0%, #EC407Ae0 60%, #FF8A65 100%);
-			}
 		}
 		
-		/*& > .clouds {
-			position: absolute;
-			left: 0px;
-			top: 0px;
-			width: 100vw;
-			height: 100%;
-			
-			& > * {
-				background: url('../img/cloud1.svg') center no-repeat;
-				background-size: contain;
-				width: 300px;
-				height: 185px;
-				//background-blend-mode: lighten;
-				opacity: 0.5;
-			}
-		}*/
+		& > .gradient-fixed {//3rd: FF8A65
+			background: linear-gradient(#5E00D1E0 0%, #EC407AE0 #{$headerSize*0.6}, #FF8A65 $headerSize) fixed;
+		}
 		
 		& > .content {
-		
+			z-index: 5;
 		}
+	}
+	
+	& > .sun-holder {
+		position: absolute;
+		top: 0px;
+		left: 0px;
+		width: 100vw;
+		height: $headerSize;
+		transform-style: preserve-3d;
 		
-		& > .sun-holder {
-			position: relative;
-			width: 100vw;
+		& > .sun-parallax {
+			display: block;
+			position: absolute;
+			z-index: 4;
+			left: 0px;
+			right: 0px;
+			//top: 0px;
+			bottom: -$sunSize/2;
+			margin: auto;
 			
-			& > .sun-parallax {
-				display: block;
+			transform: translateZ(-8px) scale(2.5);
+			transform-origin: 50% -50%;
+			
+			width: $sunSize;
+			height: $sunSize;
+			
+			& > .sun-halo {
 				position: absolute;
-				z-index: 4;
 				left: 0px;
-				right: 0px;
 				top: 0px;
-				bottom: 0px;
-				margin: auto;
 				
-				transform: translateZ(-8px) scale(2.5);
-				transform-origin: 50% -50%;
+				z-index: -1;
+				
+				//transform: scale(1.2);
+				opacity: 0.15;
 				
 				width: $sunSize;
 				height: $sunSize;
+				border-radius: $sunSize;
 				
-				& > .sun-halo {
-					position: absolute;
-					left: 0px;
-					top: 0px;
-					
-					z-index: -1;
-					
-					//transform: scale(1.2);
-					opacity: 0.15;
-					
-					width: $sunSize;
-					height: $sunSize;
-					border-radius: $sunSize;
-					
-					background: linear-gradient(#FFCCBC, #FFCC80);
-				}
-				
-				& > .sun {
-					width: $sunSize;
-					height: $sunSize;
-					
-					background: linear-gradient(#FFCCBC, #FFCC80);//#FFCCBC, #FFCC80
-					border-radius: $sunSize;
-					box-shadow: 0px 0px 40px 1px #FFCCBC;
-					z-index: 2;
-				}
+				background: linear-gradient(#FFCCBC, #FFCC80);
 			}
 			
-			& > .sun-shine-bottom {
-				display: block;
+			& > .sun {
+				width: $sunSize;
+				height: $sunSize;
+				
+				background: linear-gradient(#FFCCBC, #FFCC80); //#FFCCBC, #FFCC80
+				border-radius: $sunSize;
+				box-shadow: 0px 0px 40px 1px #FFCCBC;
+				z-index: 2;
+			}
+		}
+	}
+	
+	& > .wave-container {
+		width: 100vw;
+		height: $sunSize;
+		//background-color: #f008;
+		overflow: hidden;
+		position: absolute;
+		top: $headerSize;
+		
+		//transform-style: preserve-3d;
+		
+		& > .wave {
+			display: block;
+			height: $waveHeight;
+			
+			background: url('../img/wave.svg') center repeat-x;
+			background-size: auto 100%;
+			
+			position: absolute;
+			left: 0px;
+			top: 0px;
+			width: 200vw;
+			
+			animation: wave-movement 14s ease-in-out infinite alternate-reverse;
+			
+			&:first-child {
+				animation-delay: -22s;
+				opacity: 0.6;
+			}
+			
+			@keyframes wave-movement {
+				0% {
+					transform: translateX(-50%);
+				}
+				100% {
+					transform: translateX(0%);
+				}
+			}
+		}
+		
+		& > .sun-reflection {
+			display: block;
+			position: absolute;
+			z-index: 5;
+			left: 0px;
+			right: 0px;
+			top: -$sunSize/2;
+			
+			height: $sunSize*1.25;
+			//width: $sunSize;
+			//border-radius: $sunSize;
+			//mix-blend-mode: luminosity;
+			//background: red;
+			margin: auto;
+			//opacity: 0.6;
+			
+			transform: translateZ(2.5px) scale(0.85);
+			transform-origin: 50% -275%;
+			
+			& > svg {
 				position: absolute;
-				z-index: 1;
 				left: 0px;
 				right: 0px;
-				top: 15px;
-				//bottom: 0px;
-				margin: auto;
-				width: $sunSize * 1.23;
-				height: 0px;
-				border-radius: 100%;
-				background-color: #fff0;
-				box-shadow: 0px 0px 10px 2px #fff;
+				top: 0px;
+				width: 100%;
+				height: 100%;
+				
+				opacity: 0;
+				
+				animation: blinking 3s linear infinite alternate-reverse;
+				
+				@keyframes blinking {
+					0% {
+						opacity: 0;
+					}
+					100% {
+						opacity: 1;
+					}
+				}
+				
+				&:first-child {
+					animation-delay: -3s;
+				}
 			}
 		}
 	}
@@ -140,94 +193,30 @@ $waveHeight: 30px;
 		grid-area: content;
 		
 		background: linear-gradient(#fff0 $waveHeight, #faab82 $waveHeight, #6cb9c0 300px, #5C6BC0 1200px);
-		//box-shadow: 0px 0px 15px #FF704380;
 		z-index: 4;
+		
+		padding-top: $sunSize;
+		
+		/*& > .sun-shine-bottom {
+			display: block;
+			position: absolute;
+			z-index: 1;
+			left: 0px;
+			right: 0px;
+			top: 15px;
+			//bottom: 0px;
+			margin: auto;
+			width: $sunSize * 1.23;
+			height: 0px;
+			border-radius: 100%;
+			background-color: #FFF0;
+			box-shadow: 0px 0px 10px 2px #FFF;
+		}*/
 		
 		& > .page {
 			//overflow: hidden;
 			
-			& > .wave-container {
-				width: 100vw;
-				height: $sunSize;
-				//background-color: #f008;
-				overflow: hidden;
-				position: relative;
-				
-				& > .wave {
-					display: block;
-					height: $waveHeight;
-
-					background: url('../img/wave.svg') center repeat-x;
-					background-size: auto 100%;
-					
-					position: absolute;
-					left: 0px;
-					top: 0px;
-					width: 200vw;
-					
-					animation: wave-movement 14s ease-in-out infinite alternate-reverse;
-					
-					&:first-child {
-						animation-delay: -22s;
-						opacity: 0.6;
-					}
-					
-					@keyframes wave-movement {
-						0% {
-							transform: translateX(-50%);
-						}
-						100% {
-							transform: translateX(0%);
-						}
-					}
-				}
-				
-				& > .sun-reflection {
-					display: block;
-					position: absolute;
-					z-index: 5;
-					left: 0px;
-					right: 0px;
-					top: -$sunSize/2;
-						
-				    height: $sunSize*1.25;
-				    //width: $sunSize;
-					//border-radius: $sunSize;
-					//mix-blend-mode: luminosity;
-					//background: red;
-					margin: auto;
-					//opacity: 0.6;
-					
-					transform: translateZ(2.5px) scale(0.85);
-                    transform-origin: 50% -275%;
-					
-					& > svg {
-						position: absolute;
-					    left: 0px;
-					    right: 0px;
-						top: 0px;
-						width: 100%;
-						height: 100%;
-						
-						opacity: 0;
-						
-						animation: blinking 3s linear infinite alternate-reverse;
-						
-						@keyframes blinking {
-							0% {
-								opacity: 0;
-							}
-							100% {
-								opacity: 1;
-							}
-						}
-						
-						&:first-child {
-							animation-delay: -3s;
-						}
-					}
-				}
-			}
+			
 		}
 	}
 	
