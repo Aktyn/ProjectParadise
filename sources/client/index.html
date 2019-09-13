@@ -8,11 +8,75 @@
 	<meta name="keywords" content="project, paradise, fivem, gta">
 	<meta name="Description" content="Strona główna Project Paradise">
 	<title><%= htmlWebpackPlugin.options.title %></title>
+	<style>
+		body, html {
+			margin: 0;
+		}
+		#loading-view {
+			background-color: #311B92;
+			width: 100vw;
+			height: 100vh;
+			display: grid;
+			align-items: center;
+			justify-content: center;
+			font-size: 25px;
+		}
+		
+		#loading-view > .sun-holder {
+			position: relative;
+			width: 50px;
+			height: 50px;
+			
+			opacity: 0;
+			animation: fade-in 1s .3s linear forwards;
+		}
+		
+		#loading-view > .sun-holder > * {
+			width: 100%;
+			height: 100%;
+			border-radius: 50px;
+			position: absolute;
+			top: 0;
+		}
+		
+		#loading-view > .sun-holder > .sun {
+			background: linear-gradient(#FFCCBC, #FFCC80);
+			box-shadow: 0px 0px 10px 1px #FFCCBC;
+		}
+		
+		#loading-view > .sun-holder > .sun-halo {
+			background: linear-gradient(#FFCCBC, #FFCC80);
+			opacity: 0.15;
+			
+			animation: pulse 1s cubic-bezier(.36,.07,.19,.97) infinite alternate;
+			
+			box-shadow: 0px 0px 5px 0px #000;
+		}
+		
+		#loading-view > .sun-holder > .sun-halo:nth-child(2) {
+			animation-delay: -0.5s;
+		}
+		
+		@keyframes fade-in {
+			0%  {opacity: 0}
+			100%{opacity: 1}
+		}
+		
+		@keyframes pulse {
+			0%  { transform: scale(1)   }
+			100%{ transform: scale(1.5) }
+		}
+	</style>
 </head>
 <body>
 	<div id='page'>
-		<div style='background-color: #311B92; width: 100vw; height: 100vh; display: grid; align-items: center;
-			font-size: 25px;'>Ładowanie</div>
+		<div id='loading-view'>
+			<div class="sun-holder">
+				<div class="sun-halo"></div>
+				<div class="sun-halo"></div>
+				<div class="sun"></div>
+			</div>
+		</div>
 	</div>
 </body>
 </html>

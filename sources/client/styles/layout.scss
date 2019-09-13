@@ -1,13 +1,25 @@
 @import "animations";
+@import "global";
 
-$headerSize: 400px;
-$sunSize: 200px;
-$waveHeight: 30px;
-
-$fadeFunc: 1.5s cubic-bezier(.36,.07,.19,.97) forwards;
+.night-fader {
+	position: fixed;
+	pointer-events: none;
+	top: 0px;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+	margin: auto;
+	width: 100vw;
+	height: 100vh;
+	background-color: #311B92;
+	z-index: 99;
+	
+	animation: fade-out 1.5s ease-in forwards; //$fadeFunc;
+}
 
 .layout {
 	display: grid;
+	background-color: $footerColor;
     grid-template-areas: "header" "content" "footer";
     grid-template-columns: 100%;
     grid-template-rows: min-content auto min-content;
@@ -16,18 +28,6 @@ $fadeFunc: 1.5s cubic-bezier(.36,.07,.19,.97) forwards;
     overflow-x: hidden;
     perspective: 8px;
     perspective-origin: top;
-	
-	& > .night-fader {
-		position: fixed;
-		top: 0px;
-		left: 0px;
-		width: 100vw;
-		height: 100vh;
-		background-color: #311B92;
-		z-index: 99;
-		
-		animation: fade-out $fadeFunc;
-	}
 	
 	& > header {
 		grid-area: header;
@@ -41,7 +41,14 @@ $fadeFunc: 1.5s cubic-bezier(.36,.07,.19,.97) forwards;
 		position: relative;
 		transform-style: preserve-3d;
 		
-		& > .background-parallax, & > .gradient-fixed {
+		& > .parallax-scrollfix {
+			position: absolute;
+			overflow: hidden;
+			height: 430px;
+			width: 100%;
+		}
+		
+		& .background-parallax, & > .gradient-fixed {
 			position: absolute;
 			left: 0px;
 			top: 0px;
@@ -49,7 +56,7 @@ $fadeFunc: 1.5s cubic-bezier(.36,.07,.19,.97) forwards;
 			height: $headerSize + $waveHeight;
 		}
 		
-		& > .background-parallax {
+		& .background-parallax {
 			background: url('../img/header.webp') repeat-y center;
 			background-size: cover;
 			
@@ -118,6 +125,30 @@ $fadeFunc: 1.5s cubic-bezier(.36,.07,.19,.97) forwards;
 				border-radius: $sunSize;
 				
 				background: linear-gradient(#FFCCBC, #FFCC80);
+				box-shadow: 0 0 1px #000;
+				
+				$pulseDuration: 2s;
+				@for $i from 1 through 3 {
+					&:nth-child(#{$i}) {
+						$sc: 1 + 0.1*(4-$i);
+						transform: scale($sc);
+						
+						animation: halo-pulse_#{$i} $pulseDuration ease-in-out infinite alternate;
+						animation-delay: $pulseDuration / 3 * $i;
+						
+						@keyframes halo-pulse_#{$i} {
+							0% {
+								transform: scale($sc*0.99) translateX(1px * ($i % 2));
+							}
+							50% {
+								transform: scale($sc) translateX(0px);
+							}
+							100% {
+								transform: scale($sc*1.01) translateX(-1px * ($i % 2));
+							}
+						}
+					}
+				}
 			}
 			
 			& > .sun {
@@ -129,11 +160,13 @@ $fadeFunc: 1.5s cubic-bezier(.36,.07,.19,.97) forwards;
 				box-shadow: 0px 0px 40px 1px #FFCCBC;
 				z-index: 2;
 				
-				/*cursor: pointer;
-				transition: transform 0.3s cubic-bezier(.36,.07,.19,.97);
-				&:hover {
-					transform: scale(1.05);
-				}*/
+				& > .dark-sun{
+					display: block;
+					width: $sunSize;
+					height: $sunSize;
+					border-radius: $sunSize;
+					background: linear-gradient(#FF8A65, #FF7043);
+				}
 			}
 		}
 		
@@ -238,14 +271,16 @@ $fadeFunc: 1.5s cubic-bezier(.36,.07,.19,.97) forwards;
 	& > main{
 		grid-area: content;
 		
-		background: linear-gradient(#fff0 $waveHeight, #faab82 $waveHeight, #6cb9c0 300px, #5C6BC0 1200px);
+		//background: linear-gradient(#fff0 $waveHeight, #faab82 $waveHeight, #6cb9c0 300px, #5C6BC0 1200px);
+		background: linear-gradient(#faab8200 $waveHeight, #faab82 $waveHeight, #6cb9c0 300px, #6cb9c0 100%);
+		   //$footerColor 100%);
 		z-index: 4;
 		
 		padding-top: $sunSize;
 		
 		& > .page {
 			//overflow: hidden;
-			
+			min-height: 300px;
 			
 		}
 	}
@@ -253,6 +288,5 @@ $fadeFunc: 1.5s cubic-bezier(.36,.07,.19,.97) forwards;
 	& > footer {
 		z-index: 5;
 		grid-area: footer;
-		background-color: #3F51B5;
 	}
 }

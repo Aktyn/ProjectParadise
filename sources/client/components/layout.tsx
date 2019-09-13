@@ -1,7 +1,8 @@
 import * as React from 'react';
+import Header from "./header";
+import Footer from "./footer";
 
 import '../styles/layout.scss';
-import Header from "./header";
 
 const Sun = (props: {seed: number, sun_index: number, scale: number}) => {
 	const filter_name = `displacementFilter${props.sun_index}`;
@@ -24,12 +25,25 @@ const Sun = (props: {seed: number, sun_index: number, scale: number}) => {
 	</svg>;
 };
 
-export default class Layout extends React.Component<any, any> {
+interface LayoutState {
+	//darkness: number;
+}
+
+export default class Layout extends React.Component<any, LayoutState> {
+	state: LayoutState = {
+	
+	};
 	
 	render() {
-		return <main className={'layout'}>
+		return <><main className={'layout'} onScroll={e => {
+			//let factor = (e.target as HTMLElement).scrollTop / 400;//where 400 is header height
+			//console.log( factor );
+			//this.setState({darkness: factor});
+		}}>
 			<header>
-				<div className={'background-parallax'} />
+				<div className={'parallax-scrollfix'}>
+					<div className={'background-parallax'} />
+				</div>
 				<div className={'gradient-fixed'} />
 			</header>
 			<div className={'header-content'}>
@@ -37,10 +51,12 @@ export default class Layout extends React.Component<any, any> {
 			</div>
 			<div className={'sun-holder'}>
 				<div className={'sun-parallax'}>
-					<div className={'sun-halo'} style={{transform: 'scale(1.3)'}} />
-					<div className={'sun-halo'} style={{transform: 'scale(1.2)'}} />
-					<div className={'sun-halo'} style={{transform: 'scale(1.1)'}} />
-					<div className={'sun'} />
+					<div className={'sun-halo'} /*style={{transform: 'scale(1.3)'}}*/ />
+					<div className={'sun-halo'} /*style={{transform: 'scale(1.2)'}}*/ />
+					<div className={'sun-halo'} /*style={{transform: 'scale(1.1)'}}*/ />
+					<div className={'sun'}>
+						{/*<div className={'dark-sun'} style={{opacity: this.state.darkness}} />*/}
+					</div>
 				</div>
 				<div className={'sun-shine-bottom'} />
 			</div>
@@ -60,8 +76,9 @@ export default class Layout extends React.Component<any, any> {
 					</div>
 				</div>
 			</main>
-			<footer>TODO: footer content</footer>
-			<div className={'night-fader'} />
-		</main>;
+			<Footer />
+		</main>
+		<div className={'night-fader'} />
+		</>;
 	}
 }

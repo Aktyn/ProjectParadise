@@ -10,15 +10,15 @@ import './styles/main.scss';
 import Layout from './components/layout';
 import Home from './pages/home';
 
-/*function __async(_loader: () => any) {
-	return Loadable({
-		loader: _loader,
-		loading: Loader
-	});
-}*/
+// function __async(_loader: () => any) {
+// 	return Loadable({
+// 		loader: _loader,
+// 		loading: Loader
+// 	});
+// }
 
 // const Game = __async(
-	// () => import(/* webpackChunkName: "game", webpackPrefetch: true */ './game/core'));
+	// () => import(/* webpackChunkName: "game", webpackPrefetch: true * './game/core'));
 
 
 render(<BrowserRouter>

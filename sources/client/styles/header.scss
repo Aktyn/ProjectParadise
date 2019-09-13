@@ -1,3 +1,5 @@
+@import "global";
+
 @font-face {
     font-family: Paradise;
 	font-display: auto;
@@ -53,11 +55,20 @@
 				$rot: 15deg;
 				
 				&:first-child {
-					transform: rotate(-$rot);
+					animation: spread-left $fadeFunc;
 				}
 				
 				&:not(:first-child) {
-					transform: rotate($rot);
+					animation: spread-right $fadeFunc;
+				}
+				
+				@keyframes spread-right {
+					0%  {transform: rotate(0deg)}
+					100%{transform: rotate($rot);}
+				}
+				@keyframes spread-left {
+					0%  {transform: rotate(0deg)}
+					100%{transform: rotate(-$rot);}
 				}
 			}
 			
@@ -68,6 +79,14 @@
 		
 		@media (max-width: 500px) {
 			font-size: 100px;
+		}
+		
+		@media (max-width: 400px) {
+			font-size: 80px;
+		}
+		
+		@media (max-width: 300px) {
+			display: none;
 		}
 	}
 	

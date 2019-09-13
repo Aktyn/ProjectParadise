@@ -1,0 +1,85 @@
+@import "global";
+
+$moonSize: 124px;
+
+footer {
+	background-color: $footerColor;
+	min-height: 200px;
+	//position: relative;
+	display: grid;
+	grid-template-columns: fit-content(100%) auto;
+	grid-template-rows: auto fit-content(100%);
+	grid-template-areas: "moon discord" "copyright discord";
+	align-items: center;
+	justify-content: space-between;
+	
+	color: #C5CAE9;
+	
+	.moon-widget {
+		grid-area: moon;
+	}
+	
+	.copyright {
+		grid-area: copyright;
+		font-size: 11px;
+		padding: 4px 2px;
+	}
+	
+	.discord-widget {
+		grid-area: discord;
+		text-align: left;
+		
+		& > .users-list {
+			height: 150px;
+			overflow-y: auto;
+		}
+		
+		table tr {
+			
+			td {
+				padding: 3px 5px;
+				img {
+					max-height: 21px;
+					max-width: 21px;
+					border-radius: 21px;
+				}
+			}
+		}
+	}
+	
+	.moon {
+		height: $moonSize;
+		width: $moonSize;
+		margin: 0px 38px;
+		border-radius: 100%;
+		box-shadow: inset -16px 0px 0 6px #7986CB, 12px 4px 6px #0004;
+		cursor: pointer;
+		transform: rotate(16deg);
+		background-color: transparent;
+		
+		transition: box-shadow 0.5s ease-in-out;
+		
+		&::before {
+			content: attr(data-text);
+			display: block;
+			color: $footerColor;
+			opacity: 0;
+			font-size: 18px;
+			font-weight: bold;
+			transform: rotate(-32deg);
+			transition: opacity 0.5s ease-in-out;
+		}
+		
+		&:hover {
+			box-shadow: inset 0px 0px 0 $moonSize #FFE0B2, 4px 4px 6px #0004;
+			
+			&::before {
+				opacity: 1;
+			}
+		}
+	}
+	
+	.author-info {
+		padding: 3px 38px;
+	}
+}

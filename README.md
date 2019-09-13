@@ -1,5 +1,5 @@
 <h2>Project Paradise</h2>
-<h3>Work suspended</h3>
-<p>A presentational website with fancy parallax effects.</p>
+
+<p>A presentational website for GTA V Server.</p>
 
 <img src="./preview.png" alt="preview" />

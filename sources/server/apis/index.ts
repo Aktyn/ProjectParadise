@@ -4,16 +4,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 
 import Config from '../../common/config';
-// import Database from '../database';
-// import {UPLOADS_FOLDER} from '../upload_receiver';
-// import ERROR_CODES from '../../common/error_codes';
-//
 import CommonApi from './common';
-// import AccountApi from './account';
-// import GettersApi from './getters';
-// import SearchApi from './search';
-// import TransactionsApi from './transactions';
-// import StatisticsApi from './statistics';
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true, limit: '10mb' }));
