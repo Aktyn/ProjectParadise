@@ -1,0 +1,29 @@
+.cloud-btn {
+	display: inline-block;
+	cursor: pointer;
+	position: relative;
+	
+	& > * {
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
+	
+	.content {
+		bottom: 0;
+		right: 0;
+		margin: auto;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: #546E7A;
+		font-weight: bold;
+		font-size: 32px;
+	}
+	
+	&:hover {
+		.content {
+			color: #fff;
+		}
+	}
+}

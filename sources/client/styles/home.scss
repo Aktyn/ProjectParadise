@@ -1,0 +1,79 @@
+.home {
+	
+	$anim: 0.3s ease-in-out;
+	
+	.links {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		align-items: center;
+		
+		& > button, & > a {
+			background-color: transparent;
+			box-shadow: none;
+			padding: 10px 0px;
+			border-radius: 0px;
+			//border: 3px solid #fff0;
+			border: none;
+			//transition: background-color $anim, border-color $anim;
+			
+			&::after {
+				content: "";
+				display: block;
+				width: 0%;
+				margin: auto;
+				height: 4px;
+				border-radius: 4px;
+				background-color: #fff5;
+				//box-shadow: 0px 1px 3px #fff4;
+				
+				transition: width $anim;
+			}
+			
+			&:hover {
+				box-shadow: none;
+				background-color: #fff0;
+				border-color: #fff0;
+				
+				&::after {
+					width: 100%;
+				}
+				
+				.water-text {
+					background-color: #01579B60;
+				}
+			}
+		}
+	}
+	
+	.water-text { //button
+		font-family: UnderwaterLove, RobotoRegular, Arial, serif;
+		font-size: 50px;
+		font-weight: normal;
+		//background: linear-gradient(#EC407A80 0%, #FFCCBCA0 100%);
+		//background: linear-gradient(#406DEC80 0%, #BCD7FFA0 100%);
+		background-color: #01579B20;
+		-webkit-background-clip: text;
+		background-clip: text;
+		color: transparent;
+		-webkit-text-fill-color: transparent;
+		padding: 20px 40px;
+		position: relative;
+		//text-shadow: 0px 0px 5px #64B5F640;
+		text-shadow: none;
+		box-shadow: none;
+		
+		transition: background-color $anim;
+		
+		&::after {
+			padding: 20px 40px;
+			background: none;
+			content: attr(data-text);
+			left: 0;
+			position: absolute;
+			text-shadow: 0px -2px 0px #FFF8;
+			top: 0;
+			z-index: -1;
+		}
+	}
+}
