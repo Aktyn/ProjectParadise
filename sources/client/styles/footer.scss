@@ -3,10 +3,87 @@
 $moonSize: 124px;
 
 .footer-top {
-	height: 5px;
+	$topSize: 15px;
+	
+	height: $topSize;
+	line-height: $topSize;
 	//backgroundColor: '#283593'
 	$darken_factor: 10;
 	background: linear-gradient(90deg, darken($footerColor1, $darken_factor), darken($footerColor2, $darken_factor));
+	font-weight: bold;
+	font-size: 13px;
+	color: #B39DDB;
+	text-shadow: none;
+	
+	.online-info {
+		display: inline-block;
+		
+		position: relative;
+		& > * {
+			vertical-align: top;
+		}
+		
+		.online-list {
+			position: absolute;
+			left: 0;
+			right: 0;
+			top: $topSize - 1px;
+			overflow: hidden;
+			background-color: #3b2e8a80;
+			border-bottom-left-radius: 10px;
+			border-bottom-right-radius: 10px;
+			//border: 1px solid #311B92;
+			//border-top: none;
+			box-sizing: border-box;
+			box-shadow: 0px 3px 6px #0004;
+			
+			height: 0px;
+			transition: height 0.5s cubic-bezier(.36,.07,.19,.97);
+			
+			.scroll-area {
+				overflow: auto;
+				width: 100%;
+				max-height: 100%;//$topSize * 5;
+				table {
+					width: 100%;
+					text-align: center;
+					border-collapse: collapse;
+					
+					tr {
+						&:nth-child(even) {
+							background-color: #ffffff02;
+						}
+						& > td {
+							height: $topSize;
+							line-height: $topSize;
+							text-align: center;
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	.show-list-btn {
+		background: url("../img/icons/more.svg") center no-repeat;
+		&.close {
+			background-image: url("../img/icons/close.svg");
+		}
+		background-size: contain;
+		padding: 0px 10px;
+		box-shadow: none;
+		height: $topSize;
+		width: $topSize;
+		
+		opacity: 0.5;
+		transition: transform 0.4s cubic-bezier(.36,.07,.19,.97), opacity 0.4s linear;
+		
+		&:hover {
+			box-shadow: none;
+			transform: rotate(180deg);
+			opacity: 1;
+		}
+	}
 }
 
 .footer-content {
@@ -66,12 +143,29 @@ $moonSize: 124px;
 			//background-color: #4527A080;
 			background: linear-gradient(90deg, #4527A000 0%, #4527A080 100%);
 			margin: 0px;
-			padding: 0px 10px;
+			padding: 0px;
 			height: 30px;
-			line-height: 30px;
+			//line-height: 30px;
 			
 			min-width: 400px;
 			max-width: 100%;
+			
+			display: flex;
+			align-items: center;
+			
+			&::before {
+				content: "";
+				display: inline-block;
+				height: 30px;
+				width: 30px;
+				background: url('../img/icons/discord_icon.png') center no-repeat;
+				background-size: contain;
+				transition: transform 1.2s 0.1s cubic-bezier(.87,-.41,.19,1.44);
+			}
+			
+			&:hover::before {
+				transform: rotate(360deg) scale(1.4);
+			}
 		}
 		
 		position: relative;
