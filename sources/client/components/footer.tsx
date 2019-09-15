@@ -52,10 +52,7 @@ export default class Footer extends React.Component<any, FooterState> {
 	
 	render() {
 		return <footer>
-			<div style={{
-				height: '15px',
-				backgroundColor: '#283593'
-			}} />
+			<div className={'footer-top'} />
 			<section className={'footer-content'}>
 				<div className={'moon-widget'}>
 					{this.state.author_info ?

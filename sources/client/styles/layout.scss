@@ -19,7 +19,7 @@
 
 .layout {
 	display: grid;
-	background-color: $footerColor;
+	background-color: $footerColor1;
     grid-template-areas: "header" "content" "footer";
     grid-template-columns: 100%;
     grid-template-rows: min-content auto min-content;
@@ -271,8 +271,8 @@
 	& > main{
 		grid-area: content;
 		
-		//background: linear-gradient(#fff0 $waveHeight, #faab82 $waveHeight, #6cb9c0 300px, #5C6BC0 1200px);
-		background: linear-gradient(#faab8200 $waveHeight, #faab82 $waveHeight, #6cb9c0 300px, #6cb9c0 100%);
+		background: linear-gradient(#fff0 $waveHeight, #faab82 $waveHeight, #5C6BC0 300px, #3F51B5 100%);
+		//background: linear-gradient(#faab8200 $waveHeight, #faab82 $waveHeight, #6cb9c0 300px, #6cb9c0 100%);
 		   //$footerColor 100%);
 		z-index: 4;
 		
