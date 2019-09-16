@@ -30,6 +30,17 @@
 			overflow: hidden;
 			position: relative;
 			
+			// wave popup anim
+			transform: scale(0);
+			animation: pop-in 0.7s cubic-bezier(.87,-.41,.19,1.44) forwards;
+			
+			@for $i from 1 through 8 {
+				&:nth-child(#{$i}) {
+					animation-delay: 0.1s * ($i - 1);
+				}
+			}
+			////////////////////////
+			
 			&::before {//lighten background effect
 				content: "";
 				position: absolute;

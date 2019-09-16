@@ -5,7 +5,8 @@ $moonSize: 124px;
 .footer-top {
 	$topSize: 15px;
 	
-	height: $topSize;
+	width: 100%;
+	//height: $topSize;
 	line-height: $topSize;
 	//backgroundColor: '#283593'
 	$darken_factor: 10;
@@ -15,7 +16,15 @@ $moonSize: 124px;
 	color: #B39DDB;
 	text-shadow: none;
 	
+	display: grid;
+	grid-template-columns: 1fr fit-content(100%) 1fr;
+	align-items: center;
+	justify-content: space-between;
+	grid-template-rows: auto;
+	grid-template-areas: "separator players ip";
+	
 	.online-info {
+		grid-area: players;
 		display: inline-block;
 		
 		position: relative;
@@ -64,6 +73,14 @@ $moonSize: 124px;
 		}
 	}
 	
+	.server-ip {
+		grid-area: ip;
+		text-align: right;
+		padding: 0px 10px;
+		font-weight: normal;
+		white-space: nowrap;
+	}
+	
 	.show-list-btn {
 		background: url("../img/icons/more.svg") center no-repeat;
 		&.close {
@@ -82,6 +99,17 @@ $moonSize: 124px;
 			box-shadow: none;
 			transform: rotate(180deg);
 			opacity: 1;
+		}
+	}
+	
+	@media (max-width: 700px) {
+		grid-template-columns: auto;
+		grid-template-rows: fit-content(100%) fit-content(100%);
+		justify-content: center;
+		grid-template-areas: "ip" "players";
+		
+		.server-ip {
+			text-align: center;
 		}
 	}
 }

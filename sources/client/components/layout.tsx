@@ -35,7 +35,7 @@ export default class Layout extends React.Component<any, LayoutState> {
 	};
 	
 	render() {
-		return <><main className={'layout'} onScroll={e => {
+		return <><main className={'layout'} onScroll={() => {
 			//let factor = (e.target as HTMLElement).scrollTop / 400;//where 400 is header height
 			//console.log( factor );
 			//this.setState({darkness: factor});

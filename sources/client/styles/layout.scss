@@ -226,6 +226,7 @@
 		}
 		
 		& > .sun-reflection {
+			pointer-events: none;
 			display: block;
 			position: absolute;
 			z-index: 5;

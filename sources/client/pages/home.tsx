@@ -38,12 +38,10 @@ export default class Home extends React.Component<any, HomeState> {
 			{/*<CloudBtn width={256} height={256} content={'DISCORD'} />*/}
 			<section className={'links'}>
 				<ShinyLink content={'FORUM'} href={'/forum'} separate_page={true} />
-				{this.state.discord_invitation_link &&
-					<ShinyLink content={'DISCORD'} href={this.state.discord_invitation_link} target={'_blank'}
+				<ShinyLink content={'DISCORD'} href={this.state.discord_invitation_link || '/error'} target={'_blank'}
 						separate_page={true} />
-				}
 				<ShinyLink content={'REGULAMIN'} href={'/regulamin'} />
-				<ShinyLink content={'KLAWISZOLOGIA'} href={'/klawiszologia'} />
+				<ShinyLink content={'WHITELIST'} separate_page={true} href={'/aplikacjawl/'} />
 			</section>
 		</div>;
 	}

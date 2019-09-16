@@ -9,6 +9,7 @@ import './styles/main.scss';
 
 import Layout from './components/layout';
 import Home from './pages/home';
+import Rules from './pages/rules';
 
 // function __async(_loader: () => any) {
 // 	return Loadable({
@@ -24,6 +25,7 @@ import Home from './pages/home';
 render(<BrowserRouter>
 		<Layout>
 	        <Switch>
+		        <Route path={'/regulamin'} component={Rules} />
 				<Route path={'/'} component={Home} />
 			</Switch>
 		</Layout>

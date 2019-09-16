@@ -40,7 +40,7 @@ export default class Footer extends React.Component<any, FooterState> {
 	}
 	
 	private loadOnlinePlayers() {
-		fetch(`https://cors-anywhere.herokuapp.com/${Config.FIVEM_URL}/players.json`, {
+		fetch(`https://cors-anywhere.herokuapp.com/http://${Config.FIVEM_IP}/players.json`, {
 			method: 'GET',
 			mode: 'cors',
 			headers: {"Content-Type": "application/json; charset=utf-8"},
@@ -52,7 +52,7 @@ export default class Footer extends React.Component<any, FooterState> {
 			this.setState({
 				online_players: [...res, ...res, ...res, ...res, ...res, ...res, ...res, ]
 			});*/
-		}).catch(console.error);
+		}).catch(void 0);
 		
 		setTimeout(() => this.loadOnlinePlayers(), 1000*60);//update every minute
 	}
@@ -108,6 +108,7 @@ export default class Footer extends React.Component<any, FooterState> {
 						})}</tbody></table>
 					</div></div>
 				</div>
+				<div className={'server-ip'}>IP Serwera: {Config.FIVEM_IP}</div>
 			</div>
 			<section className={'footer-content'}>
 				<div className={'moon-widget'}>

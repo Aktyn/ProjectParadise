@@ -108,3 +108,26 @@ button, a.button-style {
         box-shadow: none;
     }
 }
+
+ol {
+    counter-reset: item;
+	text-align: left;
+}
+
+ol > li {
+    counter-increment: item;
+	display: block;
+	&::before {
+		//content: counters(item, ".") ". ";
+		margin-left: -20px;
+	}
+}
+
+ol ol > li {
+    display: block;
+}
+
+ol ol > li:before {
+    content: counters(item, ".") ". ";
+    margin-left: -20px;
+}
